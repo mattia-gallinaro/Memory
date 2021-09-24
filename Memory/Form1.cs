@@ -17,11 +17,12 @@ namespace Memory
             InitializeComponent();
         }
 
+        string[] fioriCarte = new string[8];
+        bool[] sceltaGiocatore = new bool[] {false, false, false, false, false, false, false, false};
         private void Form1_Load(object sender, EventArgs e)
         {
             string[] fiori = new string[] { "magnolia", "margherita", "primula", "campane blu" };
             int nGenmagnolia = 0, nGenMargherita = 0, nGenPrimula = 0, nGenCampane_Blu = 0;
-            string[] fioriCarte = new string[8];
             Random genCarte = new Random();
             for (int i = 0; i < 8; i++)
             {
@@ -127,6 +128,57 @@ namespace Memory
         private void clickCarta(int numCarta)
         {
             numCarta -= 1; //per conformarlo alla posizione dell'array
+            if(sceltaGiocatore[numCarta] == false)
+            {
+                switch (numCarta)
+                {
+                    case 0:
+                        carta1.Image = cartasfondo(numCarta);
+                        break;
+                    case 1:
+                        carta2.Image = cartasfondo(numCarta);
+                        break;
+                    case 2:
+                        carta3.Image = cartasfondo(numCarta);
+                        break;
+                    case 3:
+                        carta4.Image = cartasfondo(numCarta);
+                        break;
+                    case 4:
+                        carta5.Image = cartasfondo(numCarta);
+                        break;
+                    case 5:
+                        carta6.Image = cartasfondo(numCarta);
+                        break;
+                    case 6:
+                        carta7.Image = cartasfondo(numCarta);
+                        break;
+                    case 7:
+                        carta8.Image = cartasfondo(numCarta);
+                        break;
+                }
+            }
+        }
+        //assegna alle carte un immagine a seconda dell'array generato
+        private System.Drawing.Image cartasfondo(int nCarta)
+        {
+            if(fioriCarte[nCarta] == "magnolia")
+            {
+                return Properties.Resources.magnolia;
+            }
+            else if (fioriCarte[nCarta] == "margherita")
+            {
+                return Properties.Resources.margherita;
+            }
+            else if (fioriCarte[nCarta] == "primula")
+            {
+                return Properties.Resources.primula;
+            }
+            else if (fioriCarte[nCarta] == "campane blu")
+            {
+                return Properties.Resources.campane_blu;
+            }
+            return null;
         }
 
         private void carta1_Click(object sender, EventArgs e)
