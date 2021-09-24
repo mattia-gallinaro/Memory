@@ -37,6 +37,7 @@ namespace Memory
             this.carta6 = new System.Windows.Forms.PictureBox();
             this.carta7 = new System.Windows.Forms.PictureBox();
             this.carta8 = new System.Windows.Forms.PictureBox();
+            this.restartGame = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.carta1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carta2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carta3)).BeginInit();
@@ -119,11 +120,23 @@ namespace Memory
             this.carta8.TabStop = false;
             this.carta8.Click += new System.EventHandler(this.carta8_Click);
             // 
+            // restartGame
+            // 
+            this.restartGame.Location = new System.Drawing.Point(291, 499);
+            this.restartGame.Name = "restartGame";
+            this.restartGame.Size = new System.Drawing.Size(196, 37);
+            this.restartGame.TabIndex = 8;
+            this.restartGame.Text = "Rimescola";
+            this.restartGame.UseVisualStyleBackColor = true;
+            this.restartGame.Visible = false;
+            this.restartGame.Click += new System.EventHandler(this.restartGame_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.restartGame);
             this.Controls.Add(this.carta8);
             this.Controls.Add(this.carta7);
             this.Controls.Add(this.carta6);
@@ -159,6 +172,7 @@ namespace Memory
         private System.Windows.Forms.PictureBox carta6;
         private System.Windows.Forms.PictureBox carta7;
         private System.Windows.Forms.PictureBox carta8;
+        private System.Windows.Forms.Button restartGame;
     }
 }
 

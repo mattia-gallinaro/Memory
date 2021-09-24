@@ -22,6 +22,11 @@ namespace Memory
         int carteSelezionate = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
+            startGame();
+        }
+
+        private void startGame()
+        {
             string[] fiori = new string[] { "magnolia", "margherita", "primula", "campane blu" };
             int nGenmagnolia = 0, nGenMargherita = 0, nGenPrimula = 0, nGenCampane_Blu = 0;
             Random genCarte = new Random();
@@ -41,6 +46,7 @@ namespace Memory
             }
             assegnazioneSfondoCarte();
         }
+
         private void assegnazioneSfondoCarte()
         {
             carta1.Image = Properties.Resources.sfondo_carta;
@@ -218,6 +224,10 @@ namespace Memory
             {
                 card1 = nCard;
             }
+            if(carteSelezionate == 8)
+            {
+                restartGame.Visible = true;
+            }
         }
 
         private void assegnazioneSfondoCarteNonCoppie(int cardNum)
@@ -275,6 +285,15 @@ namespace Memory
             {
                 Application.DoEvents();
             }
+        }
+
+        private void restartGame_Click(object sender, EventArgs e)
+        {
+            carteSelezionate = 0;
+            card1 = 0; card2 = 0;
+            for (int i = 0; i < 8; i++) { sceltaGiocatore[i] = false; }
+            startGame();
+            restartGame.Visible = false;
         }
 
         private void carta1_Click(object sender, EventArgs e)
