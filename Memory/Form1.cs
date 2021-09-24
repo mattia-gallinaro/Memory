@@ -19,6 +19,7 @@ namespace Memory
 
         string[] fioriCarte = new string[8];
         bool[] sceltaGiocatore = new bool[] {false, false, false, false, false, false, false, false};
+        int carteSelezionate = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
             string[] fiori = new string[] { "magnolia", "margherita", "primula", "campane blu" };
@@ -134,27 +135,43 @@ namespace Memory
                 {
                     case 0:
                         carta1.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                     case 1:
                         carta2.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                     case 2:
                         carta3.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                     case 3:
                         carta4.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                     case 4:
                         carta5.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                     case 5:
                         carta6.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                     case 6:
                         carta7.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                     case 7:
                         carta8.Image = cartasfondo(numCarta);
+                        sceltaGiocatore[numCarta] = true;
+                        controlloCoppie(numCarta);
                         break;
                 }
             }
@@ -179,6 +196,85 @@ namespace Memory
                 return Properties.Resources.campane_blu;
             }
             return null;
+        }
+        int card1, card2;
+        private void controlloCoppie(int nCard)
+        {
+            carteSelezionate++;
+            if (carteSelezionate % 2 == 0)
+            {
+                card2 = nCard;
+                if(fioriCarte[card1] != fioriCarte[card2])
+                {
+                    sceltaGiocatore[card1] = false;
+                    sceltaGiocatore[card2] = false;
+                    wait(500);
+                    assegnazioneSfondoCarteNonCoppie(card1);
+                    assegnazioneSfondoCarteNonCoppie(card2);
+                    carteSelezionate -= 2;
+                }
+            }
+            else
+            {
+                card1 = nCard;
+            }
+        }
+
+        private void assegnazioneSfondoCarteNonCoppie(int cardNum)
+        {
+            switch (cardNum)
+            {
+                case 0:
+                    carta1.Image = Properties.Resources.sfondo_carta;
+                    break;
+                case 1:
+                    carta2.Image = Properties.Resources.sfondo_carta;
+                    break;
+                case 2:
+                    carta3.Image = Properties.Resources.sfondo_carta;
+                    break;
+                case 3:
+                    carta4.Image = Properties.Resources.sfondo_carta;
+                    break;
+                case 4:
+                    carta5.Image = Properties.Resources.sfondo_carta;
+                    break;
+                case 5:
+                    carta6.Image = Properties.Resources.sfondo_carta;
+                    break;
+                case 6:
+                    carta7.Image = Properties.Resources.sfondo_carta;
+                    break;
+                case 7:
+                    carta8.Image = Properties.Resources.sfondo_carta;
+                    break;
+            }
+        }
+
+        public void wait(int milliseconds)
+        {
+            //crea un oggetto Timer
+            var timer1 = new System.Windows.Forms.Timer();
+            //controlla che il valore dei millisecondi non sia 0 o minore di 0
+            if (milliseconds == 0 || milliseconds < 0) return;
+
+            // inizia il timer
+            timer1.Interval = milliseconds;
+            timer1.Enabled = true;
+            timer1.Start();
+
+            //controlla se il valore inserito in millisecondi è trascorso
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+                timer1.Stop();
+                // finisce il timer
+            };
+
+            while (timer1.Enabled)//permette di elaborare le azioni che il form riceve
+            {
+                Application.DoEvents();
+            }
         }
 
         private void carta1_Click(object sender, EventArgs e)
