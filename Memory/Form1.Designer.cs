@@ -51,65 +51,73 @@ namespace Memory
             // 
             this.carta1.Location = new System.Drawing.Point(22, 60);
             this.carta1.Name = "carta1";
-            this.carta1.Size = new System.Drawing.Size(153, 188);
+            this.carta1.Size = new System.Drawing.Size(150, 190);
             this.carta1.TabIndex = 0;
             this.carta1.TabStop = false;
+            this.carta1.Click += new System.EventHandler(this.carta1_Click);
             // 
             // carta2
             // 
             this.carta2.Location = new System.Drawing.Point(218, 60);
             this.carta2.Name = "carta2";
-            this.carta2.Size = new System.Drawing.Size(153, 188);
+            this.carta2.Size = new System.Drawing.Size(150, 190);
             this.carta2.TabIndex = 1;
             this.carta2.TabStop = false;
+            this.carta2.Click += new System.EventHandler(this.carta2_Click);
             // 
             // carta3
             // 
             this.carta3.Location = new System.Drawing.Point(417, 60);
             this.carta3.Name = "carta3";
-            this.carta3.Size = new System.Drawing.Size(153, 188);
+            this.carta3.Size = new System.Drawing.Size(150, 190);
             this.carta3.TabIndex = 2;
             this.carta3.TabStop = false;
+            this.carta3.Click += new System.EventHandler(this.carta3_Click);
             // 
             // carta4
             // 
             this.carta4.Location = new System.Drawing.Point(602, 60);
             this.carta4.Name = "carta4";
-            this.carta4.Size = new System.Drawing.Size(153, 188);
+            this.carta4.Size = new System.Drawing.Size(150, 190);
             this.carta4.TabIndex = 3;
             this.carta4.TabStop = false;
+            this.carta4.Click += new System.EventHandler(this.carta4_Click);
             // 
             // carta5
             // 
             this.carta5.Location = new System.Drawing.Point(22, 276);
             this.carta5.Name = "carta5";
-            this.carta5.Size = new System.Drawing.Size(153, 188);
+            this.carta5.Size = new System.Drawing.Size(150, 190);
             this.carta5.TabIndex = 4;
             this.carta5.TabStop = false;
+            this.carta5.Click += new System.EventHandler(this.carta5_Click);
             // 
             // carta6
             // 
             this.carta6.Location = new System.Drawing.Point(218, 276);
             this.carta6.Name = "carta6";
-            this.carta6.Size = new System.Drawing.Size(153, 188);
+            this.carta6.Size = new System.Drawing.Size(150, 190);
             this.carta6.TabIndex = 5;
             this.carta6.TabStop = false;
+            this.carta6.Click += new System.EventHandler(this.carta6_Click);
             // 
             // carta7
             // 
             this.carta7.Location = new System.Drawing.Point(417, 276);
             this.carta7.Name = "carta7";
-            this.carta7.Size = new System.Drawing.Size(153, 188);
+            this.carta7.Size = new System.Drawing.Size(150, 190);
             this.carta7.TabIndex = 6;
             this.carta7.TabStop = false;
+            this.carta7.Click += new System.EventHandler(this.carta7_Click);
             // 
             // carta8
             // 
             this.carta8.Location = new System.Drawing.Point(602, 276);
             this.carta8.Name = "carta8";
-            this.carta8.Size = new System.Drawing.Size(153, 188);
+            this.carta8.Size = new System.Drawing.Size(150, 190);
             this.carta8.TabIndex = 7;
             this.carta8.TabStop = false;
+            this.carta8.Click += new System.EventHandler(this.carta8_Click);
             // 
             // Form1
             // 
