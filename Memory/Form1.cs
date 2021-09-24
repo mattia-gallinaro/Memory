@@ -23,12 +23,10 @@ namespace Memory
             int nGenmagnolia = 0, nGenMargherita = 0, nGenPrimula = 0, nGenCampane_Blu = 0;
             string[] fioriCarte = new string[8];
             Random genCarte = new Random();
-            string var = AppDomain.CurrentDomain.BaseDirectory;
-            Console.WriteLine($"Questa è la posizione del codice digitato{var}");
             for (int i = 0; i < 8; i++)
             {
                 string fioreGenerato = genCarteRandom(fiori, genCarte, ref nGenmagnolia, ref nGenMargherita, ref nGenPrimula, ref nGenCampane_Blu);
-                //controlla se il fiore generato è stato sorteggiato già più di due volteù
+                //controlla se il fiore generato è stato sorteggiato già più di due volte
                 if (i > 1 && controlloCarte(fioriCarte, ref fioreGenerato, ref nGenmagnolia, ref nGenMargherita, ref nGenPrimula, ref nGenCampane_Blu) == -1)
                 {
                     i--;//torna indietro di un ciclo, per permettere quando il ciclo si conclude di ripetere
@@ -39,6 +37,18 @@ namespace Memory
                     fioriCarte[i] = fioreGenerato;
                 }
             }
+            assegnazioneSfondoCarte();
+        }
+        private void assegnazioneSfondoCarte()
+        {
+            carta1.Image = Properties.Resources.sfondo_carta;
+            carta2.Image = Properties.Resources.sfondo_carta;
+            carta3.Image = Properties.Resources.sfondo_carta;
+            carta4.Image = Properties.Resources.sfondo_carta;
+            carta5.Image = Properties.Resources.sfondo_carta;
+            carta6.Image = Properties.Resources.sfondo_carta;
+            carta7.Image = Properties.Resources.sfondo_carta;
+            carta8.Image = Properties.Resources.sfondo_carta;
         }
         //genera un fiore
         private string genCarteRandom(string[] arrayFiori, Random gnCard, ref int nGenmagnolia, ref int nGenMargherita, ref int nGenPrimula, ref int nGenCampane_Blu)
