@@ -58,11 +58,7 @@ namespace Memory
                 {
                     return -1;
                 }
-            }
-            
-            
-            
-            
+            }         
             return 1;
         }
         //funzione al clikc di una carta
