@@ -18,8 +18,9 @@ namespace Memory
         }
 
         string[] fioriCarte = new string[8];
+        bool turno;
         bool[] sceltaGiocatore = new bool[] {false, false, false, false, false, false, false, false};
-        int carteSelezionate = 0;
+        int carteSelezionate = 0, coppieG1 = 0, coppieG2 = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
             startGame();
@@ -27,6 +28,7 @@ namespace Memory
 
         private void startGame()
         {
+            sceltaTurno();
             string[] fiori = new string[] { "magnolia", "margherita", "primula", "campane blu" };
             int nGenmagnolia = 0, nGenMargherita = 0, nGenPrimula = 0, nGenCampane_Blu = 0;
             Random genCarte = new Random();
@@ -46,7 +48,23 @@ namespace Memory
             }
             assegnazioneSfondoCarte();
         }
-
+        //viene generato randomicamente il turno del giocatore
+        private void sceltaTurno()
+        {
+            Random turnoRnd = new Random();
+            int scelta = turnoRnd.Next(0, 2);
+            if(scelta == 0)
+            {
+                turno = false;//giocatore 1
+                this.BackColor = Color.Blue;
+            }
+            else
+            {
+                turno = true;//giocatore 2
+                this.BackColor = Color.Red;
+            }
+        }
+        //assegna alle picturebox l'immagine iniziale
         private void assegnazioneSfondoCarte()
         {
             carta1.Image = Properties.Resources.sfondo_carta;
@@ -142,42 +160,42 @@ namespace Memory
                     case 0:
                         carta1.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                     case 1:
                         carta2.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                     case 2:
                         carta3.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                     case 3:
                         carta4.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                     case 4:
                         carta5.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                     case 5:
                         carta6.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                     case 6:
                         carta7.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                     case 7:
                         carta8.Image = cartasfondo(numCarta);
                         sceltaGiocatore[numCarta] = true;
-                        controlloCoppie(numCarta);
+                        controlloTurno(numCarta);
                         break;
                 }
             }
@@ -203,10 +221,14 @@ namespace Memory
             }
             return null;
         }
-        int card1, card2;
-        private void controlloCoppie(int nCard)
+        private void controlloTurno(int nCard)
         {
             carteSelezionate++;
+            controlloCoppie(ref nCard);
+        }
+        int card1, card2;
+        private void controlloCoppie(ref int nCard)
+        {
             if (carteSelezionate % 2 == 0)
             {
                 card2 = nCard;
@@ -214,19 +236,49 @@ namespace Memory
                 {
                     sceltaGiocatore[card1] = false;
                     sceltaGiocatore[card2] = false;
-                    wait(500);
+                    wait(500);//fa aspettare 0,5s all'operazione successiva
                     assegnazioneSfondoCarteNonCoppie(card1);
                     assegnazioneSfondoCarteNonCoppie(card2);
                     carteSelezionate -= 2;
+                    turno = !turno;//cambia il valore da true a false o da false a true
+                    if (turno)
+                    {
+                        this.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        this.BackColor = Color.Blue;
+                    }
+                }
+                else
+                {
+                    if (turno)//assegna il punteggio a seconda del turno
+                    {
+                        coppieG2++;
+                    }
+                    else
+                    {
+                        coppieG1++;
+                    }
                 }
             }
             else
             {
                 card1 = nCard;
             }
-            if(carteSelezionate == 8)
+            if(carteSelezionate == 8)//mostra il tasto per ricominciare a giocare
             {
                 restartGame.Visible = true;
+                this.BackColor = Color.White;
+                if(coppieG1 > coppieG2)
+                {
+                    MessageBox.Show($"La partita si è conclusa\nHa vinto il giocatore 1");
+                }
+                else
+                {
+                    MessageBox.Show($"La partita si è conclusa\nHa vinto il giocatore 2");
+                }
+                //è impossible fare un pareggio con 4 coppie
             }
         }
 
@@ -292,6 +344,7 @@ namespace Memory
             carteSelezionate = 0;
             card1 = 0; card2 = 0;
             for (int i = 0; i < 8; i++) { sceltaGiocatore[i] = false; }
+            coppieG1 = 0; coppieG2 = 0;
             startGame();
             restartGame.Visible = false;
         }
