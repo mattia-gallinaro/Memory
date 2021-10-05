@@ -274,11 +274,14 @@ namespace Memory
                 {
                     MessageBox.Show($"La partita si è conclusa\nHa vinto il giocatore 1");
                 }
-                else
+                else if(coppieG2 > coppieG1)
                 {
                     MessageBox.Show($"La partita si è conclusa\nHa vinto il giocatore 2");
                 }
-                //è impossible fare un pareggio con 4 coppie
+                else
+                {
+                    MessageBox.Show($"La partita si è conclusa\nPareggio");
+                }
             }
         }
 
