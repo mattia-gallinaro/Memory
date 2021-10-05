@@ -318,7 +318,7 @@ namespace Memory
 
         public void wait(int milliseconds)
         {
-            //crea un oggetto Timer
+            //crea una variabile Timer
             var timer1 = new System.Windows.Forms.Timer();
             //controlla che il valore dei millisecondi non sia 0 o minore di 0
             if (milliseconds == 0 || milliseconds < 0) return;
